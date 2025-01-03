@@ -1,7 +1,36 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from "react";
 
 function App() {
+
+  const [fruits, setFruits] = useState([]);
+
+  const getApiData = async () => {
+    const response = await fetch(
+      "https://www.fruityvice.com/api/fruit/all/"
+    ).then((response) => response.json());
+
+    setFruits(response);
+  };
+
+  useEffect(() => {
+    getApiData();
+  }, []);
+
+  console.log(fruits);
+
+  /*var req = new XMLHttpRequest();
+  req.open("GET", "example/data.txt", false);
+  req.send(null);
+  console.log(req.responseText);*/
+
+  /*let xhr = new XMLHttpRequest();
+  xhr.open("GET", "www.fruityvice.com/api/fruit/all", false);
+  xhr.send(null);
+  console.log(xhr.response);*/
+
+
   return (
     <div className="App">
       <header className="App-header">
